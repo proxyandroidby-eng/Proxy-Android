@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>DT CHEATS V1.0</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#000;display:flex;justify-content:center;min-height:100vh}
+.app{width:100%;max-width:390px;position:relative;overflow:hidden;min-height:100vh}
+#tela1{padding:0 20px;display:flex;flex-direction:column;justify-content:center;min-height:100vh}
+.top-login{text-align:center;margin-bottom:90px}
+.top-login h1{font-size:26px;font-weight:800}
+.white{color:#e5e5e5}.blue{color:#2a5db0}
+.mid{color:#e5e5e5;text-align:center;font-size:14px;font-weight:600;margin-bottom:60px}
+label{color:#3f3f44;font-size:11px;font-weight:700;display:block;margin-bottom:10px}
+.input-login{width:100%;background:#0f0e14;border:2px solid #2a5db0;border-radius:14px;padding:16px;color:#fff;outline:none;font-size:16px;margin-bottom:20px}
+.btn-login{width:100%;background:#2a5db0;border:none;border-radius:14px;padding:18px;color:#fff;font-size:15px;font-weight:800;cursor:pointer}
+#error{color:#ff4a4a;font-size:12px;text-align:center;margin-top:12px;display:none}
+#tela2{display:none}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 6px 20px}
+.menu-btn{width:48px;height:48px;background:#1a2332;border-radius:14px;display:grid;place-items:center;color:#2a5db0;font-size:20px;cursor:pointer}
+.status{color:#00ff88;font-size:12px;display:flex;align-items:center;gap:6px;font-weight:700}
+.status::before{content:'';width:8px;height:8px;background:#00ff88;border-radius:50%;box-shadow:0 0 8px #00ff88;animation:pulseGreen 1.5s infinite}
+@keyframes pulseGreen{0%{box-shadow:0 0 0 0 rgba(0,255,136,.7)}70%{box-shadow:0 0 0 10px rgba(0,255,136,0)}100%{box-shadow:0 0 0 0 rgba(0,255,136,0)}}
+.card-main{background:#1e1e22;border-radius:24px;padding:18px 16px;max-height:68vh;overflow-y:auto}
+.card-main::-webkit-scrollbar{width:0}
+.label-top{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.label-top.bar{width:4px;height:18px;background:#2a5db0;border-radius:10px}
+.label-top span{color:#8a8a8e;font-size:13px;font-weight:600;letter-spacing:1px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:18px 4px;border-bottom:1px solid #252529}
+.row h2{color:#fff;font-size:14px;display:flex;align-items:center;gap:8px}.row p{color:#5a5a5e;font-size:11px;margin-top:2px}
+.badge.new{background:#2a5db0;color:#fff;font-size:9px;padding:4px 10px;border-radius:20px;font-weight:800}
+.toggle{width:54px;height:32px;background:#2e2e32;border-radius:50px;position:relative;cursor:pointer;flex-shrink:0;transition:.3s}
+.toggle.dot{width:28px;height:28px;background:#ffffff;border-radius:50%;position:absolute;top:2px;left:2px;transition:.35s cubic-bezier(.68,-.55,.27,1.55);box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.toggle.active{background:#2a5db0}
+.toggle.active.dot{left:24px;background:#fff}
+.btn-open{width:100%;background:#2a5db0;border:none;border-radius:20px;padding:18px;color:#0a0a0f;font-weight:800;margin-top:20px;cursor:pointer;font-size:14px}
+.btn-injetar{width:100%;background:#2a5db0;border:none;border-radius:20px;padding:18px;color:#0a0a0f;font-weight:800;margin-top:12px;cursor:pointer;font-size:14px}
+.by{text-align:center;margin-top:20px;color:#2a5db0;font-size:10px;letter-spacing:3px;font-weight:700}
+.menu-drawer{position:fixed;top:0;left:50%;width:100%;max-width:390px;height:100vh;background:#0a0a0a;transform:translateX(-110%);transition:transform.4s cubic-bezier(.34,1.56,.64,1);z-index:100;padding:16px;display:flex;flex-direction:column;margin-left:-195px}
+@media(max-width:390px){.menu-drawer{left:0;margin-left:0}}
+.menu-drawer.open{transform:translateX(0)}
+.close{width:40px;height:40px;background:#1e1e22;border-radius:12px;display:grid;place-items:center;color:#fff;cursor:pointer}
+.item-blue{background:#1e3a6a;border-radius:16px;padding:18px 16px;color:#2a5db0;display:flex;gap:12px;margin-bottom:24px;font-size:14px}
+.item{padding:14px 16px;color:#8a8a8e;display:flex;gap:12px;margin-bottom:10px;cursor:pointer;border-radius:12px;font-size:14px}
+.sair{margin-top:auto;background:#1a2e56;border-radius:16px;padding:18px;text-align:center;color:#2a5db0;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.3s;z-index:99}
+.overlay.open{opacity:1;pointer-events:auto}
+#telaADB,#telaInfo{position:fixed;top:0;left:50%;width:100%;max-width:390px;height:100vh;background:#000;z-index:120;overflow-y:auto;margin-left:-195px;padding:12px;transition:transform.45s cubic-bezier(.34,1.56,.64,1)}
+@media(max-width:390px){#telaADB,#telaInfo{left:0;margin-left:0}}
+#telaADB{transform:translateY(110%)} #telaADB.open{transform:translateY(0)}
+#telaInfo{transform:translateX(110%);z-index:130} #telaInfo.open{transform:translateX(0)}
+.card-adb,.card-info{background:#1e1e22;border-radius:24px;padding:18px 16px;margin-top:20px}
+.status-box{background:#133a26;border-radius:16px;padding:16px;display:flex;justify-content:space-between;margin:16px 0;color:#00ff88;font-size:13px}
+.btn-outline{width:100%;background:transparent;border:2px solid #2a5db0;border-radius:16px;padding:16px;color:#fff;font-weight:700;cursor:pointer;margin:12px 0}
+.divisor{display:flex;align-items:center;gap:10px;color:#4a4a4e;font-size:11px;margin:14px 0}
+.divisor::before,.divisor::after{content:'';flex:1;height:1px;background:#2a2a2e}
+.input-adb{width:100%;background:#0f0e14;border:2px solid #2a5db0;border-radius:16px;padding:16px;color:#fff;text-align:center;font-size:18px;margin-bottom:14px;outline:none}
+.input-adb.gray{border-color:#4a4a4e}
+.btn-parear{width:100%;background:#2a5db0;border:none;border-radius:16px;padding:18px;color:#fff;font-weight:800;margin-top:20px;cursor:pointer}
+.info-row{background:#15151a;border-radius:14px;padding:14px 16px;display:flex;justify-content:space-between;margin-bottom:12px;border:1px solid #2a2a2e}
+.info-row span:first-child{color:#5a5a5e;font-size:11px;font-weight:700;letter-spacing:1px}
+.info-row span:last-child{color:#fff;font-size:13px;font-weight:600}
+.status-online{color:#00ff88!important;display:flex;align-items:center;gap:6px}
+.status-online::before{content:'';width:8px;height:8px;background:#00ff88;border-radius:50%;box-shadow:0 0 8px #00ff88;animation:pulseGreen 1.5s infinite}
+#popupCode{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none;justify-content:center;align-items:center;padding:20px}
+#popupCode.open{display:flex}
+.box-code{background:#1e1e22;border-radius:24px;width:100%;max-width:390px;padding:20px;border:1px solid #2a5db0}
+.box-code h2{color:#fff;font-size:15px;text-align:center}
+.bar-copy{width:100%;height:8px;background:#2a2a2e;border-radius:10px;overflow:hidden;margin:16px 0}
+.bar-fill{height:100%;width:0%;background:#00ff88;transition:width.08s linear}
+.code-area{width:100%;height:200px;background:#0f0e14;border:2px solid #2a5db0;border-radius:14px;color:#c5c5c5;padding:14px;font-size:12px;outline:none;resize:none;margin-top:10px;display:none;font-family:monospace}
+.btn-copy-all{width:100%;background:#2a5db0;border:none;border-radius:16px;padding:16px;color:#fff;font-weight:800;margin-top:14px;cursor:pointer;display:none}
+.status-copy{color:#00ff88;text-align:center;font-size:12px;margin-top:10px;font-weight:700;display:none}
+#popupAviso{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:300;display:none;justify-content:center;align-items:center;padding:20px}
+#popupAviso.open{display:flex}
+.box-aviso{background:#1e1e22;border-radius:20px;width:100%;max-width:320px;padding:24px;text-align:center;border:1px solid #ff3b3b}
+.box-aviso h3{color:#ff3b3b;font-size:15px;margin-bottom:8px}
+.box-aviso p{color:#8a8a8e;font-size:12px;line-height:1.4}
+.btn-ok{width:100%;background:#2a5db0;border:none;border-radius:14px;padding:14px;color:#fff;font-weight:800;margin-top:16px;cursor:pointer}
+#popupOpen{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:400;display:none;justify-content:center;align-items:center;padding:20px}
+#popupOpen.open{display:flex}
+.box-open{background:#1e1e22;border-radius:28px;width:100%;max-width:360px;padding:28px 22px;text-align:center;border:1px solid #2a5db0;animation:popIn.4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.icon-ff{width:80px;height:80px;background:linear-gradient(135deg,#2a5db0,#0f1c36);border-radius:22px;display:grid;place-items:center;margin:0 auto 16px;font-size:36px;animation:floatFF 1.2s infinite alternate}
+@keyframes floatFF{0%{transform:translateY(0)}100%{transform:translateY(-6px)}}
+.bar-open{width:100%;height:10px;background:#2a2a2e;border-radius:20px;overflow:hidden;margin:18px 0}
+.bar-open-fill{height:100%;width:0%;background:linear-gradient(90deg,#2a5db0,#00ff88);transition:width.1s linear;border-radius:20px}
+.step{color:#5a5a5e;font-size:11px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="tela1">
+    <div class="top-login"><h1><span class="white">DT CHEATS</span> <span class="blue">V1.0</span></h1></div>
+    <p class="mid">Acesse sua conta</p>
+    <label>CHAVE DE ACESSO</label>
+    <input id="key" class="input-login" type="password">
+    <button class="btn-login" onclick="entrar()">ENTRAR</button>
+    <p id="error">CHAVE INVÁLIDA</p>
+    <p class="by">BY DUARTE MODDER</p>
+  </div>
+  <div id="tela2">
+    <div class="top-bar"><div class="menu-btn" onclick="toggleMenu()">≡</div><h1 style="color:#fff;font-size:14px">DT CHEATS <span style="color:#2a5db0">V1.0</span></h1><div class="status">Online</div></div>
+    <div class="card-main">
+      <div class="label-top"><div class="bar"></div><span>FUNCOES PREMIUM - 3</span></div>
+      <div class="row" data-func="HS ALTO"><div><h2>🎯 HS ALTO <span class="badge new">NOVO</span></h2><p>HS ACIMA DA CABEÇA</p></div><div class="toggle" onclick="toggleFunc(this)"><div class="dot"></div></div></div>
+      <div class="row" data-func="HS NECK"><div><h2>🎯 HS NECK <span class="badge new">NOVO</span></h2><p>HS NO PESCOÇO</p></div><div class="toggle" onclick="toggleFunc(this)"><div class="dot"></div></div></div>
+      <div class="row" data-func="HS PEITO"><div><h2>🎯 HS PEITO <span class="badge new">NOVO</span></h2><p>HS NO PEITO</p></div><div class="toggle" onclick="toggleFunc(this)"><div class="dot"></div></div></div>
+      <button class="btn-open" onclick="abrirJogo()">ABRIR JOGO COM CHEAT</button>
+      <button class="btn-injetar" onclick="injetarCheat()">INJETAR CHEAT</button>
+    </div>
+    <p class="by">BY DUARTE MODDER</p>
+  </div>
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-drawer" id="drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px"><h1 style="color:#fff;font-size:15px">DT CHEATS <span style="color:#2a5db0"> / PROXY</span></h1><div class="close" onclick="toggleMenu()">X</div></div>
+  <div class="item-blue">⊕ &nbsp; Painel Principal</div>
+  <div class="item" onclick="abrirADB()">⇌ &nbsp; Conectar</div>
+  <div class="item" onclick="abrirInfo()">i &nbsp;&nbsp; Info</div>
+  <div class="sair" onclick="sairConta()">Sair da conta</div>
+  <p class="by" style="margin-top:auto">BY DUARTE MODDER</p>
+</div>
+<div id="telaADB">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 4px 16px"><div style="display:flex;gap:10px;align-items:center"><div class="close" onclick="fecharADB()">‹</div><h1 style="color:#fff;font-size:14px">DT CHEATS</h1></div><div class="status">Online</div></div>
+  <div class="card-adb">
+    <div class="label-top"><div class="bar"></div><span>PAREAMENTO ADB</span></div>
+    <div class="status-box"><span>● Conectado</span><span>192.168.0.4</span></div>
+    <button class="btn-outline">PAREAR COM NOTIFICAÇÕES</button>
+    <div class="divisor">ou manual</div>
+    <input class="input-adb" id="codigoADB" placeholder="Ex: 123456"><input class="input-adb gray" id="portaADB" placeholder="Ex: 37681">
+    <button class="btn-parear">PAREAR</button>
+  </div>
+  <p class="by">BY DUARTE MODDER</p>
+</div>
+<div id="telaInfo">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 4px 16px"><div style="display:flex;gap:10px;align-items:center"><div class="close" onclick="fecharInfo()">‹</div><h1 style="color:#fff;font-size:14px">i &nbsp; Info</h1></div><div style="color:#00ff88;font-size:11px">Online</div></div>
+  <div class="card-info">
+    <div class="label-top"><div class="bar"></div><span>INFORMAÇÕES</span></div>
+    <div class="info-row"><span>DONO:</span><span>DUARTE MODDER</span></div>
+    <div class="info-row"><span>CRIADOR:</span><span>DUARTE DEV</span></div>
+    <div class="info-row"><span>VERSÃO:</span><span>V1.0 PREMIUM</span></div>
+    <div class="info-row"><span>STATUS:</span><span class="status-online">ONLINE</span></div>
+  </div>
+  <p class="by">BY DUARTE MODDER</p>
+</div>
+<div id="popupOpen"><div class="box-open"><div class="icon-ff">🎮</div><h2 id="openTitle" style="color:#fff;font-size:16px">INICIANDO FREE FIRE...</h2><p id="openSub" style="color:#5a5a5e;font-size:11px;margin-top:6px">Injetando <b id="openFunc" style="color:#2a5db0">HS</b></p><div class="bar-open"><div class="bar-open-fill" id="barOpen"></div></div><p class="step" id="openStep">Conectando...</p><p class="by" style="margin-top:18px">BY DUARTE MODDER</p></div></div>
+<div id="popupCode" onclick="if(event.target.id=='popupCode') fecharPopup()"><div class="box-code"><h2 id="tituloCopy">INJETANDO CHEAT...</h2><p id="txtCopy" style="color:#5a5a5e;font-size:11px;text-align:center;margin-top:4px">Copiando script</p><div class="bar-copy"><div class="bar-fill" id="barFill"></div></div><textarea id="codeArea" class="code-area" readonly></textarea><button class="btn-copy-all" id="btnCopyAll" onclick="copiarTudo()">📋 COPIAR TUDO</button><p class="status-copy" id="statusCopy">✓ Copiado!</p><button style="width:100%;background:transparent;border:1px solid #3a3a3e;border-radius:16px;padding:14px;color:#5a5a5e;font-weight:700;margin-top:12px;cursor:pointer" onclick="fecharPopup()">FECHAR</button><p class="by" style="margin-top:14px">BY DUARTE MODDER</p></div></div>
+<div id="popupAviso" onclick="if(event.target.id=='popupAviso') fecharAviso()"><div class="box-aviso"><h3>⚠️ AVISO</h3><p>Ative apenas <b style="color:#fff">1 função por vez</b>!</p><button class="btn-ok" onclick="fecharAviso()">ENTENDI</button><p class="by" style="margin-top:14px">BY DUARTE MODDER</p></div></div>
+<script>
+const CODIGOS = {
+"HS ALTO": `{
+"verAddr":"http://2.25.132.119:2223/aalto/false/false/false/false/false/false/false/false/",
+"fakeVersion":"1.0"
+}`,
+"HS NECK": `{
+"verAddr":"http://2.25.132.119:9098/apescoco/false/false/false/false/false/false/false/false/",
+"fakeVersion":"1.0"
+}`,
+"HS PEITO": `{
+"verAddr":"http://2.25.132.119:6606/apeito/false/false/false/false/false/false/false/false/",
+"fakeVersion":"1.0"
+}`
+};
+let funcaoAtiva="";
+function entrar(){let k=document.getElementById('key').value.trim().toUpperCase();if(k==="DUARTE"){document.getElementById('tela1').style.display="none";document.getElementById('tela2').style.display="block";document.getElementById('error').style.display="none";}else{document.getElementById('error').style.display="block";}}
+function toggleMenu(){document.getElementById('drawer').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');}
+function abrirADB(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');setTimeout(()=>document.getElementById('telaADB').classList.add('open'),200);}
+function fecharADB(){document.getElementById('telaADB').classList.remove('open');}
+function abrirInfo(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');setTimeout(()=>document.getElementById('telaInfo').classList.add('open'),200);}
+function fecharInfo(){document.getElementById('telaInfo').classList.remove('open');}
+function sairConta(){toggleMenu();setTimeout(()=>{document.getElementById('tela2').style.display="none";document.getElementById('tela1').style.display="flex";document.getElementById('key').value="";},300);}
+function parearADB(){let c=document.getElementById('codigoADB').value.trim();let p=document.getElementById('portaADB').value.trim();let b=document.querySelector('.btn-parear');if(c.length<6||p.length<4){alert('Preencha código e porta!');return;}b.innerText='Pareando...';setTimeout(()=>{b.innerText='CONECTADO ✓';b.style.background='#00c86b';setTimeout(()=>{fecharADB();b.innerText='PAREAR';b.style.background='#2a5db0';},1200);},1500);}
+function toggleFunc(el){
+  let func=el.closest('.row').dataset.func;
+  let ativas=document.querySelectorAll('.toggle.active').length;
+  if(!el.classList.contains('active') && ativas>=1){document.getElementById('popupAviso').classList.add('open');return;}
+  el.classList.toggle('active');funcaoAtiva=el.classList.contains('active')?func:"";
+}
+function fecharAviso(){document.getElementById('popupAviso').classList.remove('open');}
+function abrirJogo(){
+  let ativo=document.querySelector('.toggle.active');
+  if(!ativo){alert('Ative 1 função!');return;}
+  let func=ativo.closest('.row').dataset.func;
+  document.getElementById('popupOpen').classList.add('open');
+  document.getElementById('openFunc').innerText=func;
+  document.getElementById('barOpen').style.width='0%';
+  document.getElementById('openStep').innerText='Conectando ao Free Fire...';
+  document.getElementById('openTitle').innerText='INICIANDO FREE FIRE...';
+  let w=0,fill=document.getElementById('barOpen'),step=document.getElementById('openStep');
+  let int=setInterval(()=>{
+    w+=1.2;fill.style.width=w+'%';
+    if(w<30) step.innerText='Injetando '+func+'...';
+    else if(w<60) step.innerText='Bypass Anti-Ban... OK ✓';
+    else if(w<85) step.innerText='Carregando Free Fire...';
+    else step.innerText='Abrindo jogo...';
+    if(w>=100){
+      clearInterval(int);
+      document.getElementById('openTitle').innerText='FREE FIRE ABERTO!';
+      step.innerHTML='<b style="color:#00ff88">✓ Cheat injetado!</b>';
+      setTimeout(()=>{
+        window.location.href="intent://launch#Intent;package=com.dts.freefireth;end";
+        setTimeout(()=>{window.location.href="intent://launch#Intent;package=com.dts.freefiremax;end";},800);
+        setTimeout(()=>{document.getElementById('popupOpen').classList.remove('open');},1500);
+      },600);
+    }
+  },22);
+}
+function injetarCheat(){
+  let ativo=document.querySelector('.toggle.active');
+  if(!ativo){alert('Ative 1 função!');return;}
+  let func=ativo.closest('.row').dataset.func;
+  document.getElementById('codeArea').value=CODIGOS[func];
+  document.getElementById('popupCode').classList.add('open');
+  document.getElementById('codeArea').style.display='none';
+  document.getElementById('btnCopyAll').style.display='none';
+  document.getElementById('statusCopy').style.display='none';
+  document.getElementById('barFill').style.width='0%';
+  document.getElementById('tituloCopy').innerText='INJETANDO '+func+'...';
+  let w=0,fill=document.getElementById('barFill');
+  let int=setInterval(()=>{w+=2;fill.style.width=w+'%';if(w>=100){clearInterval(int);
+      document.getElementById('tituloCopy').innerText=func+' PRONTO!';
+      document.getElementById('codeArea').style.display='block';
+      document.getElementById('btnCopyAll').style.display='block';
+      copiarTudo(true);
+  }},28);
+}
+function copiarTudo(){let area=document.getElementById('codeArea');area.select();area.setSelectionRange(0,99999);navigator.clipboard.writeText(area.value);let st=document.getElementById('statusCopy');st.style.display='block';st.innerText='✓ '+funcaoAtiva+' copiado!';}
+function fecharPopup(){document.getElementById('popupCode').classList.remove('open');}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelector('.btn-parear').onclick=parearADB;
+});
+(function(){
+  const QTD=5;
+  function verifica(){
+    let html=document.documentElement.innerHTML.toUpperCase();
+    let count=(html.match(/BY DUARTE MODDER/g)||[]).length;
+    if(count<QTD){
+      document.documentElement.innerHTML='<body style="margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh"><div style="text-align:center"><h1 style="color:#ff2a2a">ARQUIVO VIOLADO</h1></div></body>';
+      throw new Error("VIOLADO");
+    }
+  }
+  verifica();setInterval(verifica,500);
+  new MutationObserver(verifica).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+</body>
+</html>
